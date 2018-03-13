@@ -7,8 +7,47 @@
     <title>Document</title>
 </head>
 <body ng-controller="MyCtrl">
+
+    <form 
+        novalidate 
+        name="myform" 
+        ng-submit="onFormSubmit(myform)">
+        <div>
+            Name: 
+            <input 
+                type="text" 
+                name="username" 
+                name-validation
+                ng-model="newVal.name" required>
+            <div ng-show="myform.username.$dirty 
+                    && myform.username.$error">
+                    <span 
+                    ng-show="myform.username.$error.required">
+                        Name is required
+                    </span>
+                    <span 
+                    ng-show="myform.username.$error.nameValidation">
+                        Name can't start with a
+                    </span>
+                    <span ng-show="myform.username.$error.minlength">
+                            Minimum 2 is required
+                </span>
+            </div>
+        </div>
+
+        <div>
+            Age: 
+            <input 
+                type="number" 
+                name="age" 
+                ng-model="newVal.age">
+        </div>
+        <input type="submit" value="Add"> 
+    </form>
+{{newVal}}
     
     <script src="angular.js"></script>
     <script src="app.js"></script>
+    <script src="namevalidator.js"></script>
 </body>
 </html>
